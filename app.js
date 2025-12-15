@@ -1,47 +1,30 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const checkboxes = document.querySelectorAll("input[type='checkbox']");
-  const today = new Date().toDateString();
-  const lastDate = localStorage.getItem("lastDate");
+const today = new Date().toDateString();
+document.getElementById("todayDate").innerText = today;
 
-  // Daily reset
-  if (lastDate !== today) {
-    checkboxes.forEach(cb => {
-      localStorage.removeItem(cb.id);
-      cb.checked = false;
-    });
-    localStorage.setItem("lastDate", today);
-  }
+// ---- DAILY RESET LOGIC ----
+const savedDate = localStorage.getItem("lastDate");
+if (savedDate !== today) {
+  localStorage.clear();
+  localStorage.setItem("lastDate", today);
+}
 
-  // Restore state
-  checkboxes.forEach(cb => {
-    cb.checked = localStorage.getItem(cb.id) === "true";
-    cb.addEventListener("change", () => {
-      localStorage.setItem(cb.id, cb.checked);
-    });
+// ---- CHECKBOX STORAGE ----
+document.querySelectorAll("input[type='checkbox']").forEach((cb) => {
+  const key = `${today}-${cb.dataset.key}`;
+  cb.checked = localStorage.getItem(key) === "true";
+
+  cb.addEventListener("change", () => {
+    localStorage.setItem(key, cb.checked);
   });
+});
 
-  // Date text
-  document.getElementById("today-date").textContent =
-    "📅 " + today;
+// ---- THEME TOGGLE ----
+const themeToggle = document.getElementById("themeToggle");
+const currentTheme = localStorage.getItem("theme") || "dark";
+document.body.className = currentTheme;
 
-  // Dark mode
-  const toggle = document.getElementById("theme-toggle");
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-  }
-
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem(
-      "theme",
-      document.body.classList.contains("dark") ? "dark" : "light"
-    );
-  });
-
-  // Service worker
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
+themeToggle.addEventListener("click", () => {
+  const newTheme = document.body.className === "dark" ? "light" : "dark";
+  document.body.className = newTheme;
+  localStorage.setItem("theme", newTheme);
 });
