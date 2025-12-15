@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const today = new Date().toDateString();
   const lastDate = localStorage.getItem("lastDate");
 
-  // 🔁 Daily reset
+  // Daily reset
   if (lastDate !== today) {
     checkboxes.forEach(cb => {
       localStorage.removeItem(cb.id);
@@ -12,20 +12,35 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("lastDate", today);
   }
 
-  // 🔄 Restore state
+  // Restore state
   checkboxes.forEach(cb => {
     cb.checked = localStorage.getItem(cb.id) === "true";
-
     cb.addEventListener("change", () => {
       localStorage.setItem(cb.id, cb.checked);
     });
   });
 
-  // 📅 Show date
+  // Date text
   document.getElementById("today-date").textContent =
-    "📅 Today: " + today;
+    "📅 " + today;
 
-  // 🧩 Service Worker
+  // Dark mode
+  const toggle = document.getElementById("theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+      "theme",
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
+  });
+
+  // Service worker
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
   }
