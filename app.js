@@ -1,39 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
-
   const today = new Date().toDateString();
   const lastDate = localStorage.getItem("lastDate");
 
-  // 🔁 Daily reset if date changed
+  // 🔁 Daily reset
   if (lastDate !== today) {
-    checkboxes.forEach((checkbox) => {
-      const key = checkbox.dataset.id;
-      localStorage.setItem(key, false);
-      checkbox.checked = false;
+    checkboxes.forEach(cb => {
+      localStorage.removeItem(cb.id);
+      cb.checked = false;
     });
     localStorage.setItem("lastDate", today);
   }
 
-  // 🔄 Restore saved state
-  checkboxes.forEach((checkbox) => {
-    const key = checkbox.dataset.id;
+  // 🔄 Restore state
+  checkboxes.forEach(cb => {
+    cb.checked = localStorage.getItem(cb.id) === "true";
 
-    if (localStorage.getItem(key) === "true") {
-      checkbox.checked = true;
-    }
-
-    checkbox.addEventListener("change", () => {
-      localStorage.setItem(key, checkbox.checked);
+    cb.addEventListener("change", () => {
+      localStorage.setItem(cb.id, cb.checked);
     });
   });
 
-  // 📅 Show today's date
-  const dateBanner = document.getElementById("today-date");
-  if (dateBanner) {
-    dateBanner.textContent = "📅 Today: " + today;
-  }
+  // 📅 Show date
+  document.getElementById("today-date").textContent =
+    "📅 Today: " + today;
 
-  // 🧩 Register Service Worker (PWA)
+  // 🧩 Service Worker
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
   }
