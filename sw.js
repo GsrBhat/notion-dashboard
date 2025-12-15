@@ -1,5 +1,44 @@
+const CACHE_NAME = "dashboard-cache-v2"; // 🔁 change version when updating
+const FILES_TO_CACHE = [
+  "/notion-dashboard/",
+  "/notion-dashboard/index.html",
+  "/notion-dashboard/style.css",
+  "/notion-dashboard/app.js",
+  "/notion-dashboard/manifest.json",
+  "/notion-dashboard/icon.png"
+];
+
+// Install
+self.addEventListener("install", event => {
+  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
+  );
+});
+
+// Activate (delete old caches)
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
+});
+
+// Fetch
 self.addEventListener("fetch", event => {
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
