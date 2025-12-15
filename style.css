@@ -1,0 +1,23 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 16px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+label {
+  display: block;
+  margin: 8px 0;
+}
