@@ -2,43 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Rahul’s Planner</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="icon.png" />
 </head>
 
 <body>
-  <main class="page">
-
-    <header class="page-header">
+  <main class="container">
+    <header>
       <h1>Rahul’s Planner</h1>
-      <button id="theme-toggle">🌙</button>
+      <button id="themeToggle">🌙</button>
     </header>
 
-    <p id="today-date" class="date-text"></p>
+    <p class="date" id="todayDate"></p>
 
-    <!-- Focus -->
-    <section class="block">
+    <section>
       <h2>🎯 Focus for Today</h2>
-      <label><input type="checkbox" id="priority1"> Priority 1</label>
-      <label><input type="checkbox" id="priority2"> Priority 2</label>
-      <label><input type="checkbox" id="priority3"> Priority 3</label>
+      <label><input type="checkbox" data-key="p1"> Priority 1</label>
+      <label><input type="checkbox" data-key="p2"> Priority 2</label>
+      <label><input type="checkbox" data-key="p3"> Priority 3</label>
     </section>
 
-    <!-- Habits -->
-    <section class="block">
+    <section>
       <h2>🔁 Daily Habits</h2>
-      <label><input type="checkbox" id="workout"> Workout</label>
-      <label><input type="checkbox" id="coding"> Coding</label>
-      <label><input type="checkbox" id="vlsi"> VLSI Study</label>
-      <label><input type="checkbox" id="sleep"> Sleep on time</label>
+      <label><input type="checkbox" data-key="workout"> Workout</label>
+      <label><input type="checkbox" data-key="coding"> Coding</label>
+      <label><input type="checkbox" data-key="vlsi"> VLSI Study</label>
+      <label><input type="checkbox" data-key="sleep"> Sleep on time</label>
     </section>
-
   </main>
 
   <script src="app.js"></script>
