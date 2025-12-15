@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>SAI Dashboard</title>
+  <title>Rahul’s Planner</title>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
@@ -13,23 +13,33 @@
 </head>
 
 <body>
-  <h1>🏠 Dashboard</h1>
-  <p id="today-date"></p>
+  <main class="page">
 
-  <section class="card">
-    <h2>🎯 Top 3 Priorities</h2>
-    <label><input type="checkbox" id="priority1"> Priority 1</label><br>
-    <label><input type="checkbox" id="priority2"> Priority 2</label><br>
-    <label><input type="checkbox" id="priority3"> Priority 3</label>
-  </section>
+    <header class="page-header">
+      <h1>Rahul’s Planner</h1>
+      <button id="theme-toggle">🌙</button>
+    </header>
 
-  <section class="card">
-    <h2>🔁 Daily Habits</h2>
-    <label><input type="checkbox" id="workout"> Workout</label><br>
-    <label><input type="checkbox" id="coding"> Coding</label><br>
-    <label><input type="checkbox" id="vlsi"> VLSI Study</label><br>
-    <label><input type="checkbox" id="sleep"> Sleep on time</label>
-  </section>
+    <p id="today-date" class="date-text"></p>
+
+    <!-- Focus -->
+    <section class="block">
+      <h2>🎯 Focus for Today</h2>
+      <label><input type="checkbox" id="priority1"> Priority 1</label>
+      <label><input type="checkbox" id="priority2"> Priority 2</label>
+      <label><input type="checkbox" id="priority3"> Priority 3</label>
+    </section>
+
+    <!-- Habits -->
+    <section class="block">
+      <h2>🔁 Daily Habits</h2>
+      <label><input type="checkbox" id="workout"> Workout</label>
+      <label><input type="checkbox" id="coding"> Coding</label>
+      <label><input type="checkbox" id="vlsi"> VLSI Study</label>
+      <label><input type="checkbox" id="sleep"> Sleep on time</label>
+    </section>
+
+  </main>
 
   <script src="app.js"></script>
 </body>
