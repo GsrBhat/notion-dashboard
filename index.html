@@ -3,36 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>SAI Dashboard</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-
   <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icon.png">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icon -->
+  <link rel="icon" href="icon.png" type="image/png" />
 </head>
 
 <body>
-
-  <h1>🏠 Dashboard</h1>
+  <!-- Header -->
+  <header class="header">
+    <h1>🏠 Dashboard</h1>
+    <p id="today-date"></p>
+  </header>
 
   <!-- Top 3 Priorities -->
   <section class="card">
     <h2>🎯 Top 3 Priorities</h2>
 
     <label>
-      <input type="checkbox" id="priority1">
+      <input type="checkbox" class="priority" data-id="p1" />
       Priority 1
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" id="priority2">
+      <input type="checkbox" class="priority" data-id="p2" />
       Priority 2
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" id="priority3">
+      <input type="checkbox" class="priority" data-id="p3" />
       Priority 3
     </label>
   </section>
@@ -42,28 +49,27 @@
     <h2>🔁 Daily Habits</h2>
 
     <label>
-      <input type="checkbox" id="workout">
+      <input type="checkbox" class="habit" data-id="workout" />
       Workout
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" id="coding">
+      <input type="checkbox" class="habit" data-id="coding" />
       Coding
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" id="vlsi">
+      <input type="checkbox" class="habit" data-id="vlsi" />
       VLSI Study
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" id="sleep">
+      <input type="checkbox" class="habit" data-id="sleep" />
       Sleep on time
     </label>
   </section>
 
-  <!-- JS -->
+  <!-- Script -->
   <script src="app.js"></script>
-
 </body>
 </html>
