@@ -4,15 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   checkboxes.forEach((checkbox) => {
     const id = checkbox.id;
 
-    // Restore saved state
     if (localStorage.getItem(id) === "true") {
       checkbox.checked = true;
     }
 
-    // Save state on change
     checkbox.addEventListener("change", () => {
       localStorage.setItem(id, checkbox.checked);
     });
   });
 });
-
