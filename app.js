@@ -1,36 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
-  const today = new Date();
-  const todayString = today.toDateString();
+  const today = new Date().toDateString();
   const lastDate = localStorage.getItem("lastDate");
 
-  // DAILY RESET
-  if (lastDate !== todayString) {
+  // 🔁 Daily reset if date changed
+  if (lastDate !== today) {
     checkboxes.forEach((checkbox) => {
-      localStorage.setItem(checkbox.id, false);
+      const key = checkbox.dataset.id;
+      localStorage.setItem(key, false);
       checkbox.checked = false;
     });
-    localStorage.setItem("lastDate", todayString);
+    localStorage.setItem("lastDate", today);
   }
 
-  // RESTORE CHECKBOX STATE
+  // 🔄 Restore saved state
   checkboxes.forEach((checkbox) => {
-    if (localStorage.getItem(checkbox.id) === "true") {
+    const key = checkbox.dataset.id;
+
+    if (localStorage.getItem(key) === "true") {
       checkbox.checked = true;
     }
 
     checkbox.addEventListener("change", () => {
-      localStorage.setItem(checkbox.id, checkbox.checked);
+      localStorage.setItem(key, checkbox.checked);
     });
   });
 
-  // SHOW TODAY'S DATE (FIXED)
-  const dateBanner = document.createElement("div");
-  dateBanner.textContent = "📅 Today: " + todayString;
-  dateBanner.style.fontWeight = "600";
-  dateBanner.style.margin = "15px 0";
+  // 📅 Show today's date
+  const dateBanner = document.getElementById("today-date");
+  if (dateBanner) {
+    dateBanner.textContent = "📅 Today: " + today;
+  }
 
-  const title = document.querySelector("h1");
-  title.insertAdjacentElement("afterend", dateBanner);
+  // 🧩 Register Service Worker (PWA)
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
 });
