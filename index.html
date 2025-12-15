@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SAI Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.png">
 </head>
+
 <body>
 
   <h1>🏠 Dashboard</h1>
 
+  <!-- Top 3 Priorities -->
   <section class="card">
     <h2>🎯 Top 3 Priorities</h2>
-    <label><input type="checkbox"> Priority 1</label>
-    <label><input type="checkbox"> Priority 2</label>
-    <label><input type="checkbox"> Priority 3</label>
+
+    <label>
+      <input type="checkbox" id="priority1">
+      Priority 1
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="priority2">
+      Priority 2
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="priority3">
+      Priority 3
+    </label>
   </section>
 
+  <!-- Daily Habits -->
   <section class="card">
     <h2>🔁 Daily Habits</h2>
-    <label><input type="checkbox"> Workout</label>
-    <label><input type="checkbox"> Coding</label>
-    <label><input type="checkbox"> VLSI Study</label>
-    <label><input type="checkbox"> Sleep on time</label>
+
+    <label>
+      <input type="checkbox" id="workout">
+      Workout
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="coding">
+      Coding
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="vlsi">
+      VLSI Study
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="sleep">
+      Sleep on time
+    </label>
   </section>
 
+  <!-- JS -->
   <script src="app.js"></script>
+
 </body>
 </html>
